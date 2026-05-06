@@ -5,9 +5,8 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { usePathname } from "next/navigation"
 
 export function NavProjects({
   projects,
@@ -18,6 +17,7 @@ export function NavProjects({
     icon: React.ReactNode
   }[]
 }) {
+  const path = usePathname();
 
   return (
     <SidebarGroup>
@@ -25,7 +25,7 @@ export function NavProjects({
 
       <SidebarMenu>
         {projects.map((item) => (
-          <SidebarMenuButton key={item.name} asChild tooltip={item.name}>
+          <SidebarMenuButton isActive={path.startsWith(item.url)} key={item.name} asChild tooltip={item.name}>
             <Link prefetch={false} href={item.url}>
               {item.icon}
               <span>{item.name}</span>

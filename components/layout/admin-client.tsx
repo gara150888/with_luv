@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { usePathname } from "next/navigation"
 
 type Project = {
   name: string
@@ -27,6 +28,7 @@ export function NavProjectsAdminClient({
   const iconMap = {
     dashboard: LayoutDashboardIcon,
   }
+  const path = usePathname();
 
   return (<SidebarGroup>
     <SidebarGroupLabel>Admin</SidebarGroupLabel>
@@ -37,7 +39,7 @@ export function NavProjectsAdminClient({
 
         return (
           <SidebarMenuItem key={item.url}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton isActive={path.startsWith(item.url)} key={item.name} asChild tooltip={item.name}>
               <Link prefetch={false} href={item.url}>
                 {Icon && <Icon />}
                 <span>{item.name}</span>
