@@ -8,5 +8,6 @@ export type ProfileData = {
     bio: string | null
     avatar_img: string | null
     banner_img: string | null
+    coins: number
     createdAt: string | null
 }
