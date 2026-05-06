@@ -2,7 +2,6 @@
 
 import * as React from "react"
 
-import { NavMain } from "@/components/layout/nav-main"
 import { NavProjects } from "@/components/layout/nav-projects"
 import { NavUser } from "@/components/layout/nav-user"
 import { Brand } from "@/components/layout/brand"
@@ -14,6 +13,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { LayoutDashboardIcon, CheckCircle2, Trophy, BadgePlus, CircleUser } from "lucide-react"
+import { NavProjectsAdmin } from "./admin"
+import { Separator } from "@/components/ui/separator"
 
 const data = {
   projects: [
@@ -54,6 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavProjects projects={data.projects} />
+        <NavProjectsAdmin />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
