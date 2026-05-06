@@ -101,7 +101,7 @@ export default function PublicProfilePage({ profile }: { profile: any }) {
                 <Trophy className="h-4 w-4 text-amber-400 shrink-0" />
                 <div>
                   <p className="text-xs text-muted-foreground">Coins</p>
-                  <p className="font-medium text-foreground">{0}</p>
+                  <p className="font-medium text-foreground">{profile.coins || 0}</p>
                 </div>
               </div>
             </div>

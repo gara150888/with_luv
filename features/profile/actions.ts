@@ -1,7 +1,7 @@
 'use server'
 import db from "@/lib/db"
 import { currentUser } from "@clerk/nextjs/server"
-import { ProfileData } from "./type"
+import type { ProfileData } from "./type"
 
 export async function fetchProfile(): Promise<ProfileData | null> {
     try {
@@ -12,7 +12,7 @@ export async function fetchProfile(): Promise<ProfileData | null> {
 
         const dbUser = await db.user.findUnique({
             where: { clerkId: user.id },
-            include: { profile: true }
+            include: { profile: true, coins: true }
         })
 
         if (!dbUser) return null
@@ -29,6 +29,7 @@ export async function fetchProfile(): Promise<ProfileData | null> {
             avatar_img: profile?.avatar_img || null,
             banner_img: profile?.banner_img || null,
             createdAt: profile?.createdAt?.toISOString() || null,
+            coins: dbUser.coins?.balance || 0
         }
 
     } catch (error: unknown) {
@@ -103,7 +104,7 @@ export async function fetchProfileByUsername(username: string) {
 
         const userfound = await db.profile.findUnique({
             where: { username: username },
-            include: { user: true }
+            include: { user: { include: { coins: true } } }
         })
 
         if (!userfound) return { success: false, message: "User not found" };
@@ -118,6 +119,7 @@ export async function fetchProfileByUsername(username: string) {
             avatar_img: userfound.avatar_img || null,
             banner_img: userfound.banner_img || null,
             createdAt: userfound.createdAt?.toISOString() || null,
+            coins: userfound.user?.coins?.balance || 0
         };
         return { success: true, message: "Email updated successfully", profile: profileData };
     } catch (error: unknown) {

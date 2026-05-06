@@ -21,7 +21,7 @@ export function NavProjects({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>More</SidebarGroupLabel>
+      <SidebarGroupLabel>Actions</SidebarGroupLabel>
 
       <SidebarMenu>
         {projects.map((item) => (
