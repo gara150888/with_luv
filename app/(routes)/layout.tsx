@@ -16,11 +16,12 @@ import {
 } from "@/components/ui/sidebar"
 
 import { usePathname } from "next/navigation"
+import React from "react"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 
     const path = usePathname();
-
+    const paths = path.split('/').filter(item => item);
 
     return (
         <SidebarProvider>
@@ -36,12 +37,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                         Tournament4All
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
-                                <BreadcrumbSeparator className="hidden md:block" />
-                                <BreadcrumbItem>
-                                    <BreadcrumbPage className="capitalize">
-                                        {path.split('/')[1] || "Unkown Page"}
-                                    </BreadcrumbPage>
-                                </BreadcrumbItem>
+                                {paths.map((p, i) => (
+                                    <React.Fragment key={i}>
+                                        <BreadcrumbSeparator className="hidden md:block" />
+                                        <BreadcrumbItem>
+                                            <BreadcrumbPage className="capitalize">
+                                                {p}
+                                            </BreadcrumbPage>
+                                        </BreadcrumbItem>
+                                    </React.Fragment>
+                                ))}
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
