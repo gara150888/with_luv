@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Recurse -Depth 4 -Exclude \"node_modules\", \".next\", \".git\")",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
