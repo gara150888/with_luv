@@ -1,4 +1,3 @@
-
 export type ProfileData = {
     id: string
     email: string
@@ -9,4 +8,11 @@ export type ProfileData = {
     avatar_img: string | null
     banner_img: string | null
     createdAt: string | null
+}
+
+export type UpdateProfileData = {
+    username?: string | null
+    bio?: string | null
+    avatar_img?: string | null
+    banner_img?: string | null
 }
