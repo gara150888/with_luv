@@ -7,7 +7,13 @@ export async function getAdmin() {
     const user = await currentUser()
     const email = user?.emailAddresses[0]?.emailAddress
     const admin = await db.admin.findUnique({ where: { email } })
-    return admin
+    if (!admin) return null
+    return {
+        id: admin.id,
+        email: admin.email,
+        createdAt: admin.createdAt.toISOString(),
+        updatedAt: admin.updatedAt.toISOString(),
+    }
 }
 
 export async function getAdmins() {
@@ -17,7 +23,12 @@ export async function getAdmins() {
     const admin = await db.admin.findUnique({ where: { email } })
     if (!admin) throw new Error("Admin access required")
     const admins = await db.admin.findMany()
-    return admins
+    return admins.map(admin => ({
+        id: admin.id,
+        email: admin.email,
+        createdAt: admin.createdAt.toISOString(),
+        updatedAt: admin.updatedAt.toISOString(),
+    }))
 }
 
 export const deleteAdmin = async (id: string) => {
@@ -29,7 +40,12 @@ export const deleteAdmin = async (id: string) => {
     const deleted = await db.admin.delete({
         where: { id }
     })
-    return deleted
+    return {
+        id: deleted.id,
+        email: deleted.email,
+        createdAt: deleted.createdAt.toISOString(),
+        updatedAt: deleted.updatedAt.toISOString(),
+    }
 }
 
 export async function createAdmin(email: string) {

@@ -15,8 +15,8 @@ export type Game = {
 export type Admin = {
   id: string
   email: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
 }
 
 export type ForClientProps = {

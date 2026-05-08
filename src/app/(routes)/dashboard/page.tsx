@@ -1,9 +1,6 @@
+import DashboardPage from "@/features/dashboard/components/DashboardPage"
 
 
 export default function Page() {
-  return (
-    <div>
-      {/* <h1>Dashboard</h1> */}
-    </div>
-  )
+  return (<DashboardPage />)
 }
