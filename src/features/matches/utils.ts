@@ -1,4 +1,5 @@
 export { formatDateTime, formatTimeRemaining } from "@/lib/date"
+
 export function getMatchTypeColor(type: string) {
     switch (type.toLowerCase()) {
         case 'solo': return 'bg-blue-500 hover:bg-blue-600'

@@ -31,7 +31,7 @@ export type UpdateMatchInput = Partial<Omit<CreateMatchInput, 'gameId'>> & { id:
 
 export type CreateMatchInput = {
     gameId: string
-    poster_img: string
+    poster_img?: string
     join_status: boolean
     join_fee: number
     rules?: string

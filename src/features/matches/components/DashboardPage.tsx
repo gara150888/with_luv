@@ -11,7 +11,7 @@ import { JoinMatchPopup } from "./JoinMatchPopup"
 import { LoadingState } from "@/components/shared/LoadingState"
 
 interface DashboardPageProps {
-  data: { success: true; match: Match[] } | { success: false; message: string }
+  data: { success: true, matches: Match[] } | { success: false, message: string }
 }
 
 export default function DashboardPage({ data }: DashboardPageProps) {
@@ -40,7 +40,7 @@ export default function DashboardPage({ data }: DashboardPageProps) {
     )
   }
 
-  if (!data.success || data.match.length === 0) {
+  if (!data?.success || data?.matches?.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center space-y-3">
@@ -56,7 +56,7 @@ export default function DashboardPage({ data }: DashboardPageProps) {
     )
   }
 
-  const matches = data.match
+  const matches = data?.matches ?? [];
   const gameName = matches[0]?.game?.game_name || "Game"
   const totalPrizePool = matches.reduce((sum: number, match: Match) => sum + match.prize_pool, 0)
 
